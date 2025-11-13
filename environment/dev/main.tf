@@ -11,6 +11,19 @@ module "network_security_group" {
 
 }
 
+module "public_ip" {
+  depends_on = [ module.resource_group ]
+  source = "../../modules/azurerm_public_ip"
+  public_ip = var.public_ip
+  
+}
+
+module "bastion_host" {
+  depends_on = [ module.public_ip,module.virtual_network,module.resource_group ]
+  source = "../../modules/azurerm_bastion_host"
+  bastion_host = var.bastion_host
+  
+}
 
 module "virtual_network" {
   depends_on = [ module.resource_group ]

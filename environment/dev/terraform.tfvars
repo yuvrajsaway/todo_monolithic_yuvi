@@ -38,6 +38,37 @@ network_security_group = {
   }
 }
 
+public_ip = {
+  bastion_pip = {
+    pip_name          = "bastion_pip"
+    rg_name           = "yuvi_devrg01"
+    location          = "eastus"
+    allocation_method = "Static"
+    tags = {
+      Environment = "Dev"
+      Owner       = "Team A"
+    }
+  }
+}
+
+bastion_host = {
+  bastion_host = {
+    bastion_name         = "yuvi_bastionhost01"
+    rg_name              = "yuvi_devrg01"
+    location             = "eastus"
+    pip_name             = "bastion_pip"
+    subnet_name          = "AzureBastionSubnet"
+    virtual_network_name = "yuvi_vnet01"
+    ip_configuration = {
+      ip_config01 = {
+        name = "bastion_ipconfig01"
+      }
+    }
+  }
+}
+
+
+
 virtual_network = {
   vnet01 = {
     vnet_name     = "yuvi_vnet01"
@@ -120,17 +151,17 @@ linux_virtual_machine = {
       Owner       = "Team A"
     }
     os_disk = {
-      os_disk01 ={
-      caching              = "ReadWrite"
-      storage_account_type = "Standard_LRS"
+      os_disk01 = {
+        caching              = "ReadWrite"
+        storage_account_type = "Standard_LRS"
       }
     }
     source_image_reference = {
       source_image_reference01 = {
-      publisher = "Canonical"
-      offer     = "UbuntuServer"
-      sku       = "18.04-LTS"
-      version   = "latest"
+        publisher = "Canonical"
+        offer     = "UbuntuServer"
+        sku       = "18.04-LTS"
+        version   = "latest"
       }
     }
   }
@@ -146,18 +177,18 @@ linux_virtual_machine = {
       Owner       = "Team A"
     }
     os_disk = {
-      os_disk01 ={
-      caching              = "ReadWrite"
-      storage_account_type = "Standard_LRS"
+      os_disk01 = {
+        caching              = "ReadWrite"
+        storage_account_type = "Standard_LRS"
       }
     }
     source_image_reference = {
       source_image_reference01 = {
-      publisher = "Canonical"
-      offer     = "UbuntuServer"
-      sku       = "18.04-LTS"
-      version   = "latest"
+        publisher = "Canonical"
+        offer     = "UbuntuServer"
+        sku       = "18.04-LTS"
+        version   = "latest"
       }
     }
-}
+  }
 }
