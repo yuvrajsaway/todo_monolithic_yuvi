@@ -5,11 +5,9 @@ resource "azurerm_linux_virtual_machine" "virtual_machine" {
   resource_group_name             = each.value.rg_name
   size                            = each.value.size
   disable_password_authentication = "false"
-  admin_username                  = "admin_username"
-  admin_password                  = "admin_password"
-  network_interface_ids = [
-    azurerm_network_interface.nic.id,
-  ]
+  admin_username                  = "dataram"
+  admin_password                  = "P@$$w0rd@123"
+  network_interface_ids = [data.azurerm_network_interface.data_nic[each.key].id]
 
   # admin_ssh_key {
   #   username   = "adminuser"
@@ -46,3 +44,5 @@ resource "azurerm_linux_virtual_machine" "virtual_machine" {
   )
 
 }
+
+

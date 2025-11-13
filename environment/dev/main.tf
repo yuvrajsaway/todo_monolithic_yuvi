@@ -5,7 +5,7 @@ module "resource_group" {
 }
 
 module "network_security_group" {
-  depends_on = [ module.virtual_network, module.network_interface ]
+  depends_on = [ module.virtual_network, module.network_interface, module.resource_group ]
   source                 = "../../modules/azurerm_network_security_group"
   network_security_group = var.network_security_group
 
@@ -25,11 +25,11 @@ module "network_interface" {
   
 }
 
-# module "linux_virtual_machine" {
-#   source                = "../../modules/azurerm_linux_virtual_machine"
-#   linux_virtual_machine = var.linux_virtual_machine
-#   network_interface_id = module.network_interface.nic_id
+module "linux_virtual_machine" {
+  depends_on = [ module.resource_group, module.network_interface ]
+  source                = "../../modules/azurerm_linux_virtual_machine"
+  linux_virtual_machine = var.linux_virtual_machine
+  
 
-
-# }
+}
 

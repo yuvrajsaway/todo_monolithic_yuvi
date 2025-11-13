@@ -4,22 +4,18 @@ variable "linux_virtual_machine" {
     location = string
     rg_name  = string
     size     = string
+    nic_name = string
     tags     = optional(map(string))
-    os_disk = object({
+    os_disk = map(object({
       caching              = string
-      storage_account_type = number
+      storage_account_type = string
 
-    })
-    source_image_reference = object({
+    }))
+    source_image_reference = map(object({
       publisher = string
       offer     = string
       sku       = string
       version   = string
-  })
   }))
-}
-
-variable "network_interface_id" {
-  description = "Network interface ID to attach to VM"
-  type        = string
+  }))
 }

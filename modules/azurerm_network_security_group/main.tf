@@ -27,23 +27,3 @@ resource "azurerm_subnet_network_security_group_association" "subnet_associate" 
   subnet_id                 = data.azurerm_subnet.subnet_id[each.key].id
   network_security_group_id = azurerm_network_security_group.azurerm_nsg[each.key].id
 }
-# resource "azurerm_network_interface_security_group_association" "nic_associate" {
-#   for_each                  = var.network_security_group
-#   network_interface_id      = data.azurerm_network_interface.nic_id[each.key].id
-#   network_security_group_id = azurerm_network_security_group.azurerm_nsg[each.key].id
-# }
-
-
-data "azurerm_subnet" "subnet_id" {
-  for_each             = var.network_security_group
-  name                 = each.value.subnet_name
-  virtual_network_name = each.value.virtual_network_name
-  resource_group_name  = each.value.rg_name
-}
-
-# data "azurerm_network_interface" "nic_id" {
-#   for_each = var.network_security_group
-#   name                = each.value.nic_name
-#   resource_group_name = each.value.rg_name
-# }
-

@@ -108,46 +108,56 @@ nic = {
 
 
 }
-# linux_virtual_machine = {
-#   frontendvm01 = {
-#     vm_name  = "frontendvm01"
-#     location = "eastus"
-#     rg_name  = "yuvi_devrg01"
-#     size     = "Standard_B1s"
-#     tags = {
-#       Environment = "Dev"
-#       Owner       = "Team A"
-#     }
-#     os_disk = {
-#       caching              = "ReadWrite"
-#       storage_account_type = "Standard_LRS"
-#     }
-#     source_image_reference = {
-#       publisher = "Canonical"
-#       offer     = "UbuntuServer"
-#       sku       = "18.04-LTS"
-#       version   = "latest"
-#     }
-#   }
+linux_virtual_machine = {
+  frontendvm01 = {
+    vm_name  = "frontendvm01"
+    location = "eastus"
+    rg_name  = "yuvi_devrg01"
+    size     = "Standard_B1s"
+    nic_name = "nic01"
+    tags = {
+      Environment = "Dev"
+      Owner       = "Team A"
+    }
+    os_disk = {
+      os_disk01 ={
+      caching              = "ReadWrite"
+      storage_account_type = "Standard_LRS"
+      }
+    }
+    source_image_reference = {
+      source_image_reference01 = {
+      publisher = "Canonical"
+      offer     = "UbuntuServer"
+      sku       = "18.04-LTS"
+      version   = "latest"
+      }
+    }
+  }
 
-#   backendvm01 = {
-#     vm_name  = "backendvm01"
-#     location = "eastus"
-#     rg_name  = "yuvi_devrg01"
-#     size     = "Standard_B1s"
-#     tags = {
-#       Environment = "Dev"
-#       Owner       = "Team A"
-#     }
-#     os_disk = {
-#       caching              = "ReadWrite"
-#       storage_account_type = "Standard_LRS"
-#     }
-#     source_image_reference = {
-#       publisher = "Canonical"
-#       offer     = "UbuntuServer"
-#       sku       = "18.04-LTS"
-#       version   = "latest"
-#     }
-#   }
-# }
+  backendvm01 = {
+    vm_name  = "backendvm01"
+    location = "eastus"
+    rg_name  = "yuvi_devrg01"
+    size     = "Standard_B1s"
+    nic_name = "nic02"
+    tags = {
+      Environment = "Dev"
+      Owner       = "Team A"
+    }
+    os_disk = {
+      os_disk01 ={
+      caching              = "ReadWrite"
+      storage_account_type = "Standard_LRS"
+      }
+    }
+    source_image_reference = {
+      source_image_reference01 = {
+      publisher = "Canonical"
+      offer     = "UbuntuServer"
+      sku       = "18.04-LTS"
+      version   = "latest"
+      }
+    }
+}
+}
